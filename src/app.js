@@ -1,8 +1,8 @@
 const express = require('express');
-const { driverRouter } = require("./routers");
+const { productsRouter } = require("./routers");
 
 const app = express();
-app.use("/products", driverRouter);
+app.use("/products", productsRouter);
 
 
 // não remova esse endpoint, é para o avaliador funcionar
