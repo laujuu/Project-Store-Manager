@@ -1,19 +1,19 @@
 const productsServices = require('../services');
+const errorMap = require('../utils/errorMap');
 
-const NOT_FOUND = 404;
 const OK_STATUS = 200;
 
 const getAllProducts = async (__req, res) => {
-  const getProduct = await productsServices.getProductsById();
-  res.status(OK_STATUS).json(getProduct.message);
+  const { message } = await productsServices.getAllProducts();
+  return res.status(OK_STATUS).json(message);
 };
 
 const getProductsById = async (req, res) => {
   const { id } = req.params;
-  const getProduct = await productsServices.getProductsById(id);
+  const { type, message } = await productsServices.getProductsById(id);
 
-  if (getProduct) return res.status(NOT_FOUND).json({ message: 'Product not found' });
-  res.status(OK_STATUS).json(getProduct.message);
+  if (type) return res.status(errorMap.mapError(type)).json({ message: 'Product not found' });
+  res.status(OK_STATUS).json(message);
 };
 
 module.exports = {
