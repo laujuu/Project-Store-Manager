@@ -2,6 +2,7 @@ const productsServices = require('../services');
 const errorMap = require('../utils/errorMap');
 
 const OK_STATUS = 200;
+const CREATED_STATUS = 201;
 
 const getAllProducts = async (__req, res) => {
   const { message } = await productsServices.getAllProducts();
@@ -16,7 +17,16 @@ const getProductsById = async (req, res) => {
   res.status(OK_STATUS).json(message);
 };
 
+const createProducts = async (req, res) => {
+  const { name } = req.body;
+  const { type, message } = await productsServices.createProducts(name);
+
+  if (type) return res.status(errorMap.mapError(type)).json(message);
+  res.status(CREATED_STATUS).json(message);
+};
+
 module.exports = {
   getProductsById,
   getAllProducts,
+  createProducts,
 };
