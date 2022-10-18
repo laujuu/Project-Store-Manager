@@ -1,4 +1,4 @@
-const productsServices = require('../services');
+const { productsServices } = require('../services');
 const errorMap = require('../utils/errorMap');
 
 const OK_STATUS = 200;

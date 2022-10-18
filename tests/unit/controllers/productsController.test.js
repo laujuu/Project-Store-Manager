@@ -2,8 +2,8 @@ const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const { expect, use } = require("chai");
 
-const productService = require("../../../src/services");
-const productController = require("../../../src/controllers");
+const productService = require("../../../src/services/products.service");
+const productController = require("../../../src/controllers/products.controller");
 
 use(sinonChai);
 
