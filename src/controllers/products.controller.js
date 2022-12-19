@@ -13,7 +13,7 @@ const getProductsById = async (req, res) => {
   const { id } = req.params;
   const { type, message } = await productsServices.getProductsById(id);
 
-  if (type) return res.status(errorMap.mapError(type)).json({ message: 'Product not found' });
+  if (type) return res.status(errorMap.mapError(type)).json({ message: 'User already registered' });
   res.status(OK_STATUS).json(message);
 };
 
